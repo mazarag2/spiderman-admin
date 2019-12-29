@@ -1,4 +1,4 @@
-package com.spiderbotadmin.spiderbotadmin;
+package com.spiderbotadmin;
 
 import javax.sql.DataSource;
 

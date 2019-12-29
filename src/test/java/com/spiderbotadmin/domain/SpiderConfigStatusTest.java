@@ -14,13 +14,14 @@ public class SpiderConfigStatusTest {
 
 	private SpiderConfig spiderConfig;
 	
+	public static String SPIDERCONFIG_JSON = "{\"configName\" : \"RespondWithMeme\" ,\"spiderConfigStatus\" : \"ON\"}";
 	
 	@BeforeEach
 	public void setUp() throws JsonMappingException, JsonProcessingException {
-		String json = "{\"configName\" : \"RespondWithMeme\" ,\"spiderConfigStatus\" : \"ON\"}";
+		;
 		  spiderConfig = new ObjectMapper()
 			      .readerFor(SpiderConfig.class)
-			      .readValue(json);
+			      .readValue(SPIDERCONFIG_JSON);
 			    
 	}
 	@Test
