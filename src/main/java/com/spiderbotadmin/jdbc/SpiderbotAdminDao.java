@@ -5,11 +5,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.spiderbotadmin.domain.SpiderConfig;
+import com.spiderbotadmin.rowmapper.SpiderConfigRowMapper;
 
 @Repository("postgresql")
 public class SpiderbotAdminDao implements SpiderbotAdminJDBC {
 
-	@Autowired
+	
 	JdbcTemplate jdbcTemplate;
 
 	@Autowired
@@ -19,21 +20,41 @@ public class SpiderbotAdminDao implements SpiderbotAdminJDBC {
 	}
 		
 	private final String UPDATECONFIG_SQL = "UPDATE public.spiderconfig SET configname = ?, spiderConfigStatus = ?"; 
-	
+	private final String GETALLCONFIG_SQL = "SELECT * FROM public.spiderconfig";
+	private final String GETCONFIG_SQL = "SELECT * FROM public.spiderconfig WHERE configname = ?";
 	
 	@Override
 	public SpiderConfig updateConfig(SpiderConfig spiderConfig) {
 		// TODO Auto-generated method stub
 		try {
-			System.out.println(spiderConfig.getConfigName() + spiderConfig.getSpiderConfigStatus());
 			jdbcTemplate.update(UPDATECONFIG_SQL,spiderConfig.getConfigName(),spiderConfig.getSpiderConfigStatus().toString());
-			System.out.println("it worked lol");
 		}
 		catch(Exception ex) {
 			System.out.println(ex);
 		}
 		
 		return spiderConfig;
+		
+	}
+
+	@Override
+	public SpiderConfig getAllConfig() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public SpiderConfig getConfig(String name) {
+		SpiderConfig config = null ;
+		try {
+			config = jdbcTemplate.queryForObject(GETCONFIG_SQL, new Object[] {name},new SpiderConfigRowMapper());
+			
+		}
+		catch(Exception ex) {
+			System.out.println(ex);
+		}
+		return config;
 		
 	}
 

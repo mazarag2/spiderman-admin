@@ -8,4 +8,6 @@ import com.spiderbotadmin.domain.SpiderConfig;
 public interface SpiderbotAdminJDBC {
 
 	public SpiderConfig updateConfig(SpiderConfig spiderConfig);
+	public SpiderConfig getAllConfig();
+	public SpiderConfig getConfig(String name);
 }

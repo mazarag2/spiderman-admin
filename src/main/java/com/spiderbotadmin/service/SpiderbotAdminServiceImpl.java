@@ -24,6 +24,20 @@ public class SpiderbotAdminServiceImpl implements SpiderbotAdminService {
 		return spiderJdbc.updateConfig(spiderConfig);
 	}
 
+
+	@Override
+	public SpiderConfig getConfig(String configName) {
+		return spiderJdbc.getConfig(configName);
+		
+	}
+
+
+	@Override
+	public SpiderConfig getAllconfig() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 	

@@ -3,6 +3,7 @@ package com.spiderbotadmin.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,9 +25,9 @@ public class SpiderAdminController {
 		return spiderService.updateConfig(config);
 	}
 	
-	@RequestMapping(method = RequestMethod.GET,value = "/test")
-	public String testThisDude() {
+	@RequestMapping(method = RequestMethod.GET,value = "/SpiderConfig/{name}")
+	public SpiderConfig getSpiderConfig(@PathVariable("name") String name) {
+		return spiderService.getConfig(name);
 		
-		return "test boi";
 	}
 }
